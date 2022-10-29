@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  myservice:
+    build: .
+    restart: always
+    ports:
+      - "8082"
+    tty: true
+    depends_on:
+      - mongo_db
+    deploy:
+      replicas: 2
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATA_MONGODB_HOST=mongo_db
+      - SPRING_DATA_MONGODB_PORT=27017
+    volumes:
+      - app_log:/log/
+
+    healthcheck:
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
+      test: CMD curl --fail http://localhost:8082 || exit 1
+      
+    networks:
+      - mynetwork
+
+  mongo_db:
+    image: mongo:latest
+    restart: always
+    hostname: mongo_db
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongodb_data:/data/db/
+      - mongodb_log:/var/log/mongodb/
+      - mongodb_initdb:/docker-entrypoint-initdb.d/
+      - mongodb_configdb:/data/configdb
+    
+    networks:
+      - mynetwork
+
+volumes:
+  app_log:
+  mongodb_data:
+  mongodb_log:
+  mongodb_initdb:
+  mongodb_configdb:
+
+networks:
+  mynetwork:
