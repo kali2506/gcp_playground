@@ -1,0 +1,1 @@
+[![Docker Image CI](https://github.com/kali2506/gcp_playground/actions/workflows/build%20test.yml/badge.svg?branch=main)](https://github.com/kali2506/gcp_playground/actions/workflows/build%20test.yml)
