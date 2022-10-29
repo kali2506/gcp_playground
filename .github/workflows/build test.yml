@@ -33,8 +33,7 @@ jobs:
     # Setup gcloud CLI
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v0
-      with:
-        context: ./app
+      
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
     - run: |-
