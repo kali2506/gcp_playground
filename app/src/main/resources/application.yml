@@ -1,0 +1,62 @@
+spring:
+  profiles: 
+    active: local 
+  # config:
+  #   import: file:C:/Users/kilia/OneDrive/Desktop/spring_boot/application.yml
+
+logging:
+  file:
+    name: log/app.log
+  
+---
+spring:
+  output:
+    ansi:
+      enabled: DETECT
+  data:
+    mongodb: 
+      uri:  mongodb://localhost:27017/alina?readPreference=primary&authSource=admin&appname=MongoDB%20Compass&directConnection=true&ssl=false
+  config:
+    activate:
+      on-profile:
+      - local
+server:
+  port : 8888
+  
+logging:
+  level: 
+    '[org.springframework.web]': INFO
+    '[com.kali.app.BusinessLayer.AlinaServiceImpl]': DEBUG
+  
+---
+spring:
+  config:
+    import: file:C:/Users/kilia/OneDrive/Desktop/spring_boot/application.yml
+    activate:
+      on-profile:
+      - dev
+server:
+  port : 8081
+
+logging:
+  level:
+    root: INFO
+    '[org.springframework.web]': INFO
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+      - docker
+  data:
+    mongodb:
+      host: mongo_db
+server:
+  port : 8082
+
+logging:
+  level:
+    root: info
+    '[com.kali.app.BusinessLayer.AlinaServiceImpl]': DEBUG
