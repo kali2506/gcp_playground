@@ -41,7 +41,8 @@ jobs:
     # Build the Docker image
     - name: Build
       run: |-
-        docker build --tag "gcr.io/${{ secrets.GCP_PROJECT_ID }}/app:$GITHUB_SHA" app/.
+        cd app/
+        docker build --tag "gcr.io/${{ secrets.GCP_PROJECT_ID }}/app:$GITHUB_SHA" .
     # Push the Docker image to Google Container Registry
     - name: Publish
       if: github.ref == 'refs/heads/main'
