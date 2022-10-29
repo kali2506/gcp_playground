@@ -23,7 +23,7 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
       
-    - uses: 'actions/checkout@v3'
+ #   - uses: 'actions/checkout@v3'
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
