@@ -1,4 +1,4 @@
 FROM openjdk:11.0.7-jre-slim
-COPY target/*.jar /usr/src/app/app.jar
+COPY . /usr/src/app/.
 EXPOSE 8888 8081 8082
 ENTRYPOINT [ "java", "-jar", "/usr/src/app/app.jar" ]
