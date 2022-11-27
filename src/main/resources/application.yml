@@ -1,8 +1,6 @@
 spring:
   profiles: 
     active: local 
-  # config:
-  #   import: file:C:/Users/kilia/OneDrive/Desktop/spring_boot/application.yml
 
 logging:
   file:
@@ -31,7 +29,6 @@ logging:
 ---
 spring:
   config:
-    import: file:C:/Users/kilia/OneDrive/Desktop/spring_boot/application.yml
     activate:
       on-profile:
       - dev
